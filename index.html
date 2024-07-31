@@ -19,7 +19,7 @@
             var industry = document.getElementById('industry').value;
             var role = document.getElementById('role').value;
             var CNAE = document.getElementById('CNAE').value;
-            var scriptUrl = 'https://script.google.com/macros/s/AKfycbw0EALH20bteIH-dMReOBymbSQrelGtUGI4xhl5HBoMv4Y2s-JoFAlRuSGSNSpYZXFo3A/exec';  // Reemplaza con la URL de tu API web
+            var scriptUrl = 'https://script.google.com/macros/s/AKfycbz20vSzSrWEwDR6lqix16ruuIkVc-wT2aEPmRUmazK2vUApqOazbL85ZNBknymoelB5OA/exec';
 
             var url = scriptUrl + '?country=' + encodeURIComponent(country) +
                 '&industry=' + encodeURIComponent(industry) +
@@ -186,7 +186,7 @@
 
             <form>
                 <div class="mb-3">
-                    <label for="country" class="form-label">País:</label>
+                    <label for="country" class="form-label">Country:</label>
                     <input type="text" id="country" class="form-control" list="countries">
                     <datalist id="countries">
                         <!-- Options will be populated here by JavaScript -->
@@ -194,7 +194,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="industry" class="form-label">Industria:</label>
+                    <label for="industry" class="form-label">Industry:</label>
                     <input type="text" id="industry" class="form-control" list="industries">
                     <datalist id="industries">
                         <!-- Options will be populated here by JavaScript -->
@@ -202,7 +202,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="role" class="form-label">Rol:</label>
+                    <label for="role" class="form-label">Role:</label>
                     <input type="text" id="role" class="form-control" list="roles">
                     <datalist id="roles">
                         <!-- Options will be populated here by JavaScript -->
