@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Filtrar Google Sheets</title>
+  <script>
+    function filterSheet() {
+      var country = document.getElementById('country').value;
+      var industry = document.getElementById('industry').value;
+      var role = document.getElementById('role').value;
+      var CNAE = document.getElementById('CNAE').value;
+      var scriptUrl = 'https://script.google.com/macros/s/AKfycbzlkVMYpnmKC1uo6IYt1qUmS0DD_BixReHgVttxDpcwLjvR9RDNo5otjUg70sHTKZzo4Q/exec';  // Reemplaza con la URL de tu API web
+
+      var url = scriptUrl + '?country=' + encodeURIComponent(country) +
+                '&industry=' + encodeURIComponent(industry) +
+                '&role=' + encodeURIComponent(role) +
+                '&CNAE=' + encodeURIComponent(CNAE);
+
+      window.open(url, '_blank');
+    }
+  </script>
+</head>
+<body>
+  <h1>Filtrar Google Sheets</h1>
+  <label for="country">País:</label>
+  <input type="text" id="country">
+  <br>
+  <label for="industry">Industria:</label>
+  <input type="text" id="industry">
+  <br>
+  <label for="role">Rol:</label>
+  <input type="text" id="role">
+  <br>
+  <label for="CNAE">CNAE:</label>
+  <input type="text" id="CNAE">
+  <br>
+  <button onclick="filterSheet()">Filtrar</button>
+</body>
+</html>
