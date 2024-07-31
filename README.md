@@ -6,6 +6,6 @@ https://leads-automation.netlify.app/,
 
 and select parameters from the panel.
 
-![alt text](image.png)
+![alt text](https://github.com/javierbengolea/leads/blob/master/image.png)
 
 So click submit and a csv file is downloaded.
