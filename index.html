@@ -1,38 +1,247 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Filtrar Google Sheets</title>
-  <script>
-    function filterSheet() {
-      var country = document.getElementById('country').value;
-      var industry = document.getElementById('industry').value;
-      var role = document.getElementById('role').value;
-      var CNAE = document.getElementById('CNAE').value;
-      var scriptUrl = 'https://script.google.com/macros/s/AKfycbzlkVMYpnmKC1uo6IYt1qUmS0DD_BixReHgVttxDpcwLjvR9RDNo5otjUg70sHTKZzo4Q/exec';  // Reemplaza con la URL de tu API web
 
-      var url = scriptUrl + '?country=' + encodeURIComponent(country) +
+<head>
+    <title>Filtrar Leads</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script>
+        function filterSheet() {
+            var country = document.getElementById('country').value;
+            var industry = document.getElementById('industry').value;
+            var role = document.getElementById('role').value;
+            var CNAE = document.getElementById('CNAE').value;
+            var scriptUrl = 'https://script.google.com/macros/s/AKfycbw0EALH20bteIH-dMReOBymbSQrelGtUGI4xhl5HBoMv4Y2s-JoFAlRuSGSNSpYZXFo3A/exec';  // Reemplaza con la URL de tu API web
+
+            var url = scriptUrl + '?country=' + encodeURIComponent(country) +
                 '&industry=' + encodeURIComponent(industry) +
                 '&role=' + encodeURIComponent(role) +
                 '&CNAE=' + encodeURIComponent(CNAE);
 
-      window.open(url, '_blank');
-    }
-  </script>
+            window.open(url, '_blank');
+        }
+    </script>
+
+    <script>
+
+        const countries = ['Afghanistan', 'Albania', 'American Samoa', 'Andorra', 'Angola',
+            'Anguilla', 'Antarctica (the territory South of 60 deg S)',
+            'Antigua and Barbuda', 'Argentina', 'Armenia', 'Aruba',
+            'Australia', 'Austria', 'Azerbaijan', 'Bahamas', 'Bahrain',
+            'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin',
+            'Bermuda', 'Bhutan', 'Bolivia', 'Bosnia and Herzegovina',
+            'Botswana', 'Bouvet Island (Bouvetoya)', 'Brazil',
+            'British Indian Ocean Territory (Chagos Archipelago)',
+            'British Virgin Islands', 'Brunei Darussalam', 'Bulgaria',
+            'Burkina Faso', 'Burundi', 'Cambodia', 'Canada', 'Cape Verde',
+            'Cayman Islands', 'Central African Republic', 'Chad', 'China',
+            'Christmas Island', 'Cocos (Keeling) Islands', 'Comoros', 'Congo',
+            'Cook Islands', 'Costa Rica', "Cote d'Ivoire", 'Croatia', 'Cuba',
+            'Cyprus', 'Czech Republic', 'Denmark', 'Djibouti', 'Dominica',
+            'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador',
+            'Equatorial Guinea', 'Eritrea', 'Estonia', 'Ethiopia',
+            'Faroe Islands', 'Finland', 'France', 'French Guiana',
+            'French Southern Territories', 'Gabon', 'Gambia', 'Ghana',
+            'Gibraltar', 'Greece', 'Greenland', 'Grenada', 'Guadeloupe',
+            'Guam', 'Guatemala', 'Guernsey', 'Guinea', 'Guinea-Bissau',
+            'Guyana', 'Haiti', 'Heard Island and McDonald Islands', 'Honduras',
+            'Hong Kong', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran',
+            'Iraq', 'Ireland', 'Isle of Man', 'Israel', 'Italy', 'Jamaica',
+            'Japan', 'Jersey', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati',
+            'Korea', 'Kuwait', 'Kyrgyz Republic',
+            "Lao People's Democratic Republic", 'Latvia', 'Lebanon', 'Lesotho',
+            'Liberia', 'Libyan Arab Jamahiriya', 'Liechtenstein', 'Lithuania',
+            'Macao', 'Macedonia', 'Malawi', 'Maldives', 'Mali', 'Malta',
+            'Marshall Islands', 'Mauritania', 'Mauritius', 'Mayotte', 'Mexico',
+            'Micronesia', 'Moldova', 'Monaco', 'Mongolia', 'Montenegro',
+            'Montserrat', 'Mozambique', 'Myanmar', 'Nauru', 'Nepal',
+            'Netherlands', 'Netherlands Antilles', 'New Caledonia',
+            'New Zealand', 'Nicaragua', 'Niger', 'Niue', 'Norfolk Island',
+            'Northern Mariana Islands', 'Norway', 'Oman', 'Palau',
+            'Palestinian Territory', 'Papua New Guinea', 'Paraguay',
+            'Philippines', 'Pitcairn Islands', 'Poland', 'Portugal',
+            'Puerto Rico', 'Qatar', 'Reunion', 'Romania', 'Russian Federation',
+            'Rwanda', 'Saint Barthelemy', 'Saint Helena',
+            'Saint Kitts and Nevis', 'Saint Lucia',
+            'Saint Pierre and Miquelon', 'Saint Vincent and the Grenadines',
+            'Samoa', 'San Marino', 'Saudi Arabia', 'Serbia', 'Seychelles',
+            'Sierra Leone', 'Singapore', 'Slovakia (Slovak Republic)',
+            'Slovenia', 'Solomon Islands', 'Somalia', 'South Africa',
+            'South Georgia and the South Sandwich Islands', 'Spain',
+            'Sri Lanka', 'Sudan', 'Suriname', 'Svalbard & Jan Mayen Islands',
+            'Swaziland', 'Sweden', 'Switzerland', 'Syrian Arab Republic',
+            'Taiwan', 'Tajikistan', 'Tanzania', 'Thailand', 'Timor-Leste',
+            'Togo', 'Tokelau', 'Tonga', 'Trinidad and Tobago', 'Tunisia',
+            'Turkey', 'Turkmenistan', 'Turks and Caicos Islands', 'Tuvalu',
+            'Uganda', 'Ukraine', 'United Arab Emirates', 'United Kingdom',
+            'United States Minor Outlying Islands',
+            'United States Virgin Islands', 'United States of America',
+            'Uruguay', 'Uzbekistan', 'Vanuatu', 'Vietnam', 'Wallis and Futuna',
+            'Western Sahara', 'Zambia', 'Zimbabwe']
+        const industries = ['Education', 'Entertainment', 'Finance', 'Healthcare',
+            'Manufacturing', 'Retail', 'Technology']
+        const roles = ['CEO', 'CFO', 'CMO', 'COO', 'CTO', 'Director', 'VP']
+        const cnae = [107., 125., 156., 170., 178., 200., 222., 223., 238.,
+            284., 287., 296., 298., 306., 315., 319., 350., 389.,
+            395., 414., 436., 440., 455., 474., 481., 531., 540.,
+            547., 561., 592., 632., 639., 656., 708., 759., 765.,
+            810., 824., 845., 852., 880., 900., 916., 925., 943.,
+            944., 955., 1069., 1124., 1128., 1136., 1141., 1164., 1197.,
+            1220., 1232., 1351., 1379., 1409., 1420., 1424., 1467., 1479.,
+            1496., 1498., 1529., 1534., 1623., 1631., 1665., 1673., 1709.,
+            1710., 1741., 1751., 1761., 1780., 1799., 1824., 1834., 1839.,
+            1855., 1880., 1887., 1911., 1954., 1967., 1988., 1992., 2021.,
+            2088., 2101., 2103., 2123., 2220., 2222., 2245., 2259., 2279.,
+            2280., 2283., 2306., 2353., 2364., 2398., 2404., 2405., 2419.,
+            2441., 2447., 2450., 2455., 2475., 2477., 2539., 2542., 2549.,
+            2560., 2621., 2645., 2653., 2687., 2694., 2695., 2730., 2736.,
+            2818., 2821., 2834., 2835., 2839., 2840., 2869., 2870., 2877.,
+            2883., 2908., 2915., 2919., 2921., 2933., 2935., 2950., 2953.,
+            2959., 3001., 3007., 3016., 3018., 3062., 3068., 3086., 3092.,
+            3115., 3122., 3147., 3149., 3165., 3179., 3201., 3204., 3205.,
+            3212., 3223., 3263., 3266., 3288., 3297., 3300., 3359., 3364.,
+            3414., 3416., 3424., 3429., 3437., 3443., 3445., 3447., 3463.,
+            3478., 3490., 3503., 3548., 3588., 3627., 3628., 3640., 3677.,
+            3716., 3732., 3736., 3751., 3755., 3757., 3762., 3772., 3794.,
+            3811., 3812., 3814., 3875., 3883., 3897., 3906., 3923., 3991.,
+            4000., 4051., 4058., 4083., 4096., 4117., 4127., 4129., 4171.,
+            4177., 4215., 4232., 4250., 4258., 4273., 4292., 4296., 4313.,
+            4358., 4401., 4415., 4421., 4425., 4431., 4434., 4444., 4460.,
+            4469., 4522., 4543., 4550., 4583., 4584., 4589., 4599., 4608.,
+            4614., 4636., 4666., 4678., 4702., 4728., 4739., 4768., 4784.,
+            4827., 4843., 4845., 4888., 4894., 4970., 5001., 5077., 5131.,
+            5132., 5134., 5163., 5165., 5171., 5203., 5214., 5237., 5261.,
+            5284., 5289., 5342., 5381., 5394., 5473., 5475., 5508., 5510.,
+            5518., 5541., 5564., 5598., 5601., 5608., 5659., 5679., 5680.,
+            5707., 5722., 5724., 5761., 5764., 5781., 5795., 5818., 5855.,
+            5887., 5937., 5947., 5951., 5957., 5972., 6059., 6087., 6088.,
+            6123., 6197., 6211., 6212., 6229., 6234., 6239., 6246., 6247.,
+            6274., 6289., 6291., 6295., 6301., 6309., 6322., 6366., 6406.,
+            6415., 6421., 6422., 6428., 6429., 6442., 6471., 6483., 6486.,
+            6499., 6556., 6592., 6594., 6615., 6657., 6658., 6679., 6682.,
+            6727., 6738., 6739., 6754., 6778., 6865., 6888., 6929., 6933.,
+            6935., 6946., 6992., 7003., 7015., 7021., 7023., 7028., 7033.,
+            7036., 7037., 7056., 7063., 7066., 7068., 7094., 7097., 7133.,
+            7144., 7220., 7222., 7246., 7318., 7360., 7369., 7372., 7399.,
+            7412., 7489., 7491., 7538., 7543., 7548., 7571., 7576., 7582.,
+            7610., 7612., 7635., 7713., 7760., 7771., 7795., 7817., 7827.,
+            7885., 7905., 7910., 7919., 7938., 7939., 7944., 7965., 7966.,
+            7984., 8018., 8029., 8056., 8060., 8069., 8133., 8143., 8147.,
+            8151., 8170., 8221., 8222., 8242., 8243., 8263., 8265., 8303.,
+            8306., 8308., 8336., 8350., 8368., 8458., 8490., 8543., 8547.,
+            8563., 8564., 8594., 8596., 8600., 8642., 8675., 8682., 8689.,
+            8707., 8713., 8749., 8757., 8761., 8775., 8892., 8900., 8927.,
+            8938., 8946., 8983., 8984., 9030., 9036., 9077., 9098., 9100.,
+            9122., 9263., 9279., 9300., 9322., 9331., 9334., 9338., 9375.,
+            9391., 9416., 9467., 9494., 9557., 9579., 9607., 9620., 9637.,
+            9663., 9667., 9682., 9691., 9763., 9798., 9818., 9859., 9861.,
+            9931., 9970., 9993.]
+
+    </script>
+
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Filtrar Google Sheets</h1>
-  <label for="country">País:</label>
-  <input type="text" id="country">
-  <br>
-  <label for="industry">Industria:</label>
-  <input type="text" id="industry">
-  <br>
-  <label for="role">Rol:</label>
-  <input type="text" id="role">
-  <br>
-  <label for="CNAE">CNAE:</label>
-  <input type="text" id="CNAE">
-  <br>
-  <button onclick="filterSheet()">Filtrar</button>
-</body>
+    <h1>Filtrar Google Sheets</h1>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+    </style>
+
+    <body>
+        <div class="form-container">
+            <h2 class="mb-4">Form with Datalists</h2>
+
+            <form>
+                <div class="mb-3">
+                    <label for="country" class="form-label">País:</label>
+                    <input type="text" id="country" class="form-control" list="countries">
+                    <datalist id="countries">
+                        <!-- Options will be populated here by JavaScript -->
+                    </datalist>
+                </div>
+
+                <div class="mb-3">
+                    <label for="industry" class="form-label">Industria:</label>
+                    <input type="text" id="industry" class="form-control" list="industries">
+                    <datalist id="industries">
+                        <!-- Options will be populated here by JavaScript -->
+                    </datalist>
+                </div>
+
+                <div class="mb-3">
+                    <label for="role" class="form-label">Rol:</label>
+                    <input type="text" id="role" class="form-control" list="roles">
+                    <datalist id="roles">
+                        <!-- Options will be populated here by JavaScript -->
+                    </datalist>
+                </div>
+
+                <div class="mb-3">
+                    <label for="CNAE" class="form-label">CNAE:</label>
+                    <input type="text" id="CNAE" class="form-control" list="cnae">
+                    <datalist id="cnae">
+                        <!-- Options will be populated here by JavaScript -->
+                    </datalist>
+                </div>
+
+                <button type="button" class="btn btn-primary" onclick="filterSheet()">Submit</button>
+            </form>
+        </div>
+
+        <script>
+            // Arrays for each fiel
+
+
+            // Function to populate a datalist
+            function populateDatalist(datalistId, data) {
+                const datalist = document.getElementById(datalistId);
+                data.forEach(item => {
+                    const option = document.createElement('option');
+                    option.value = item;
+                    datalist.appendChild(option);
+                });
+            }
+
+            // Populate datalists
+            populateDatalist('countries', countries);
+            populateDatalist('industries', industries);
+            populateDatalist('roles', roles);
+            populateDatalist('cnae', cnae);
+        </script>
+        <!-- <button onclick="filterSheet()">Filtrar</button> -->
+    </body>
+
 </html>
