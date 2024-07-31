@@ -4,5 +4,5 @@
     "deployment_url": "https://leads-automation.netlify.app/",
     "app_script_url": "https://raw.githubusercontent.com/javierbengolea/leads/master/codigo.gs",
     "github_url": "https://github.com/javierbengolea/leads",
-    "explanation_url": "https://github.com/javierbengolea/leads/edit/master/README.md"
+    "explanation_url": "https://leads-automation.netlify.app/readme"
 }
