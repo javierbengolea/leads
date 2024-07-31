@@ -1,5 +1,4 @@
 {
-    "index": "https://github.com/javierbengolea/leads/blob/master/index%201.png",
     "spread_sheet_url" : "https://docs.google.com/spreadsheets/d/1wBGYoET9iDoBZ4nhONEs6nxB2dZ0IL3zYE_If2WEyDM/edit?usp=drive_link",
     "deployment_url": "https://leads-automation.netlify.app/",
     "app_script_url": "https://raw.githubusercontent.com/javierbengolea/leads/master/codigo.gs",
